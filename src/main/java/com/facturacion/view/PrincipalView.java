@@ -49,7 +49,7 @@ public class PrincipalView extends JFrame {
 		});
 		setTitle("Sistema de Facturaci\u00F3n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 498, 297);
+		setBounds(100, 100, 512, 344);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +66,7 @@ public class PrincipalView extends JFrame {
 				client.setVisible(true);
 			}
 		});
-		btnClientes.setBounds(10, 33, 193, 64);
+		btnClientes.setBounds(10, 33, 220, 64);
 		contentPane.add(btnClientes);
 		
 		JButton btnCartera = new JButton("Cartera");
@@ -79,7 +79,7 @@ public class PrincipalView extends JFrame {
 			}
 		});
 		btnCartera.setFont(new Font("Calibri", Font.PLAIN, 19));
-		btnCartera.setBounds(278, 33, 193, 64);
+		btnCartera.setBounds(278, 33, 220, 64);
 		contentPane.add(btnCartera);
 		
 		JButton btnVenta = new JButton("Nueva Venta");
@@ -93,7 +93,7 @@ public class PrincipalView extends JFrame {
 			}
 		});
 		btnVenta.setFont(new Font("Calibri", Font.PLAIN, 19));
-		btnVenta.setBounds(10, 177, 193, 64);
+		btnVenta.setBounds(10, 177, 220, 64);
 		contentPane.add(btnVenta);
 		
 		JButton btnFactura = new JButton("Imprimir");
@@ -107,7 +107,7 @@ public class PrincipalView extends JFrame {
 		btnFactura.setFont(new Font("Calibri", Font.PLAIN, 19));
 		btnFactura.setBorder(null);
 		btnFactura.setBackground(SystemColor.menu);
-		btnFactura.setBounds(278, 177, 193, 64);
+		btnFactura.setBounds(280, 177, 218, 64);
 		contentPane.add(btnFactura);
 	}
 

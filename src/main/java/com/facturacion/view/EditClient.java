@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.awt.Font;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
@@ -87,6 +88,12 @@ public class EditClient extends JFrame {
 						}
 					} catch (NullPointerException ex) {
 						JOptionPane.showMessageDialog(null, "Error en la obtención de datos del cliente. "+ "(" + ex.getMessage() + ")", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				}
 			}
@@ -108,6 +115,10 @@ public class EditClient extends JFrame {
 		contentPane.add(btnBack);
 
 		JButton btnAccept = new JButton("Aceptar");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAccept.setBackground(SystemColor.menu);
 		btnAccept.setIcon(new ImageIcon(EditClient.class.getResource("/com/facturacion/images/success.png")));
 		btnAccept.setFont(new Font("Calibri", Font.PLAIN, 12));
@@ -120,53 +131,53 @@ public class EditClient extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-				JLabel lblIdentificacin = new JLabel("Identificaci\u00F3n");
-				lblIdentificacin.setBounds(10, 24, 88, 14);
+				JLabel lblIdentificacin = new JLabel("Identificación");
+				lblIdentificacin.setBounds(10, 24, 104, 14);
 				panel.add(lblIdentificacin);
 				lblIdentificacin.setFont(new Font("Calibri", Font.BOLD, 13));
 				
 						JLabel lblNombre = new JLabel("Nombre");
-						lblNombre.setBounds(10, 62, 46, 14);
+						lblNombre.setBounds(10, 62, 73, 14);
 						panel.add(lblNombre);
 						lblNombre.setFont(new Font("Calibri", Font.BOLD, 13));
 						
-								JLabel lblTelfono = new JLabel("Tel\u00E9fono");
+								JLabel lblTelfono = new JLabel("Teléfono");
 								lblTelfono.setBounds(10, 100, 73, 14);
 								panel.add(lblTelfono);
 								lblTelfono.setFont(new Font("Calibri", Font.BOLD, 13));
 								
-										JLabel lblDireccin = new JLabel("Direcci\u00F3n");
+										JLabel lblDireccin = new JLabel("Dirección");
 										lblDireccin.setBounds(10, 138, 73, 14);
 										panel.add(lblDireccin);
 										lblDireccin.setFont(new Font("Calibri", Font.BOLD, 13));
 										
-												JLabel lblCorreoElctronico = new JLabel("Correo el\u00E9ctronico");
+												JLabel lblCorreoElctronico = new JLabel("Correo eléctronico");
 												lblCorreoElctronico.setBounds(10, 176, 123, 14);
 												panel.add(lblCorreoElctronico);
 												lblCorreoElctronico.setFont(new Font("Calibri", Font.BOLD, 13));
 												
 														tfId = new JTextField();
-														tfId.setBounds(123, 14, 240, 26);
+														tfId.setBounds(166, 18, 240, 26);
 														panel.add(tfId);
 														tfId.setColumns(10);
 														
 																tfName = new JTextField();
-																tfName.setBounds(123, 54, 240, 26);
+																tfName.setBounds(166, 56, 240, 26);
 																panel.add(tfName);
 																tfName.setColumns(10);
 																
 																		tfPhone = new JTextField();
-																		tfPhone.setBounds(123, 94, 240, 26);
+																		tfPhone.setBounds(166, 94, 240, 26);
 																		panel.add(tfPhone);
 																		tfPhone.setColumns(10);
 																		
 																				tfAddress = new JTextField();
-																				tfAddress.setBounds(123, 134, 240, 26);
+																				tfAddress.setBounds(166, 132, 240, 26);
 																				panel.add(tfAddress);
 																				tfAddress.setColumns(10);
 																				
 																						tfMail = new JTextField();
-																						tfMail.setBounds(123, 174, 240, 26);
+																						tfMail.setBounds(166, 170, 240, 26);
 																						panel.add(tfMail);
 																						tfMail.setColumns(10);
 	}

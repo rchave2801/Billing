@@ -1,6 +1,5 @@
 package com.facturacion.controller;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,76 +9,75 @@ import java.sql.Types;
 import javax.swing.JOptionPane;
 
 import com.facturacion.model.Client;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class ClientDAO {
 
 	private Connection con;
 
 	public void insertClient(Client client) throws SQLException {
-		con = null;
 		int exec = 0;
-		String query = "{CALL SP_INSERT_CLIENT(?,?,?,?,?)}";
+		String query = "INSERT INTO CLIENT (ID,NAME,ADDRESS,PHONE,EMAIL) VALUES (?,?,?,?,?)";
+		con = DBConnection.createConnection();
+		PreparedStatement cstmt = null;
 		try {
-			con = DBConnection.createConnection();
-			CallableStatement cstmt = con.prepareCall(query);
-
+			cstmt = con.prepareStatement(query);
 			cstmt.setLong(1, client.getId());
 			cstmt.setString(2, client.getName());
-			cstmt.setInt(3, client.getPhone());
-			cstmt.setString(4, client.getMail());
-			cstmt.setString(5, client.getAddress());
+			cstmt.setInt(4, client.getPhone());
+			cstmt.setString(5, client.getMail());
+			cstmt.setString(3, client.getAddress());
 			exec = cstmt.executeUpdate();
-			if (exec == 1)
-				JOptionPane.showMessageDialog(null, "Cliente ingresado satisfactoriamente.");
-			else
-				JOptionPane.showMessageDialog(null,
-						"El cliente con identificación " + client.getId() + " Ya está registrado en el sistema");
-			con.close();
-			cstmt.close();
+			if (exec == 1) {
+				JOptionPane.showMessageDialog(null, "Cliente ingresado satisfactoriamente.");	
+			}
+		} catch(MySQLIntegrityConstraintViolationException e) {
+			JOptionPane.showMessageDialog(null,
+					"Ya existe un cliente con identificación " + client.getId() + " registrado en el sistema");
+			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null,
 					"Ocurrio un error insertando el cliente en la base de datos " + "(" + e.getMessage() + ")", "Error",
 					JOptionPane.ERROR_MESSAGE);
+		}  finally {
+			cstmt.close();
+			con.close();
 		}
 	}
 	
-	public Client getClient(Long id){
-		String query = "{ CALL SP_GET_CLIENT (?,?,?,?,?)";
-		con = null;
+	public Client getClient(Long id) throws SQLException{
+		String query = "SELECT * FROM CLIENT WHERE ID = ?";	
+		con = DBConnection.createConnection();
+		PreparedStatement cstmt = null;
 		Client client = new Client();
+		ResultSet resultSet = null;
 		try{
-			con = DBConnection.createConnection();
-			CallableStatement cstmt = con.prepareCall(query);
+			cstmt = con.prepareCall(query);		
+			cstmt.setLong(1, id);					
+			resultSet = cstmt.executeQuery();
 			
-			cstmt.setLong(1, id);		
-			cstmt.registerOutParameter(2, Types.BIGINT);
-			cstmt.registerOutParameter(3, Types.VARCHAR);
-			cstmt.registerOutParameter(4, Types.INTEGER);
-			cstmt.registerOutParameter(5, Types.VARCHAR);	
-			cstmt.registerOutParameter(6, Types.VARCHAR);
-			
-			cstmt.executeUpdate();
-			
-			if(cstmt.getResultSet().next()){
-				client.setId(cstmt.getLong(1));
-				client.setName(cstmt.getString(2));
-				client.setPhone(cstmt.getInt(3));
-				client.setMail(cstmt.getString(4));
-				client.setAddress(cstmt.getString(5));
-				
-				con.close();
-				cstmt.close();
+			if(resultSet.next()){
+				client.setId(resultSet.getLong(1));
+				client.setName(resultSet.getString(2));
+				client.setPhone(resultSet.getInt(4));
+				client.setMail(resultSet.getString(5));
+				client.setAddress(resultSet.getString(3));			
 			}
 			else{
 				JOptionPane.showMessageDialog(null, "El cliente que está buscando no se encuentra registrado. "+"("+id+")", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, "Error consultando datos del cliente. "+ "(" + e.getMessage() + ")", "Error", JOptionPane.ERROR_MESSAGE);
+		} finally {
+			cstmt.close();
+			resultSet.close();
+			con.close();
+
 		}
 		return client;
 	}
 	
-	public long searchClientById(long id){
+	public long searchClientById(long id) throws SQLException{
 		long userId= 0;
 		con = null;
 		PreparedStatement statement = null;
@@ -93,11 +91,12 @@ public class ClientDAO {
 			while(resultSet.next()){
 				userId=resultSet.getLong("Id");
 			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		} finally {
 			con.close();
 			statement.close();
 			resultSet.close();
-		}catch(SQLException e){
-			e.printStackTrace();
 		}
 		return userId;
 	}

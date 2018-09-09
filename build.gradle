@@ -19,7 +19,10 @@ dependencies {
 	//Use JasperReport library    
     compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.6.0'
     //Use MySql Connector
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
+    //compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
+    
 }
 
 distZip.shouldRunAfter(build)

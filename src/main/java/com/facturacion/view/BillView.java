@@ -45,7 +45,7 @@ public class BillView extends JFrame{
 		frmFactura = new JFrame();
 		frmFactura.setResizable(false);
 		frmFactura.setTitle("Factura");
-		frmFactura.setBounds(100, 100, 450, 300);
+		frmFactura.setBounds(100, 100, 346, 120);
 		frmFactura.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFactura.getContentPane().setLayout(null);
 		
@@ -57,11 +57,11 @@ public class BillView extends JFrame{
 				setVisible(false);
 			}
 		});
-		btnGenerar.setBounds(282, 60, 89, 23);
+		btnGenerar.setBounds(193, 41, 89, 23);
 		frmFactura.getContentPane().add(btnGenerar);
 		
 		JButton btnCotizar = new JButton("Cotizar");
-		btnCotizar.setBounds(44, 60, 89, 23);
+		btnCotizar.setBounds(42, 41, 89, 23);
 		frmFactura.getContentPane().add(btnCotizar);
 		
 	}

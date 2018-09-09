@@ -59,23 +59,23 @@ public class LoginView extends JFrame{
 		frmInicioDeSesin = new JFrame();
 		frmInicioDeSesin.setTitle("Inicio de sesi\u00F3n");
 		frmInicioDeSesin.setFont(new Font("Calibri", Font.PLAIN, 12));
-		frmInicioDeSesin.setBounds(100, 100, 450, 300);
+		frmInicioDeSesin.setBounds(100, 100, 479, 300);
 		frmInicioDeSesin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInicioDeSesin.getContentPane().setLayout(null);
 		
 		JLabel lblIniciarSesin = new JLabel("Iniciar Sesi\u00F3n");
 		lblIniciarSesin.setFont(new Font("Calibri", Font.PLAIN, 35));
-		lblIniciarSesin.setBounds(124, 11, 186, 44);
+		lblIniciarSesin.setBounds(124, 11, 240, 44);
 		frmInicioDeSesin.getContentPane().add(lblIniciarSesin);
 		
 		JLabel lbUser = new JLabel("Usuario");
 		lbUser.setFont(new Font("Calibri", Font.PLAIN, 25));
-		lbUser.setBounds(10, 100, 79, 31);
+		lbUser.setBounds(10, 100, 138, 31);
 		frmInicioDeSesin.getContentPane().add(lbUser);
 		
 		JLabel lbPass = new JLabel("Contrase\u00F1a");
 		lbPass.setFont(new Font("Calibri", Font.PLAIN, 25));
-		lbPass.setBounds(10, 159, 115, 31);
+		lbPass.setBounds(10, 159, 138, 31);
 		frmInicioDeSesin.getContentPane().add(lbPass);
 		
 		tfName = new JTextField();
@@ -111,7 +111,7 @@ public class LoginView extends JFrame{
 			}
 		});
 		btLogin.setFont(new Font("Calibri", Font.PLAIN, 20));
-		btLogin.setBounds(238, 211, 115, 39);
+		btLogin.setBounds(167, 211, 186, 39);
 		frmInicioDeSesin.getContentPane().add(btLogin);
 		
 		tfPass = new JPasswordField();

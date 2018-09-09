@@ -69,27 +69,27 @@ public class NewClient extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setFont(new Font("Calibri", Font.BOLD, 14));
+		lblNombre.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblNombre.setBounds(10, 41, 72, 14);
 		contentPane.add(lblNombre);
 
-		JLabel lblCdula = new JLabel("C\u00E9dula");
-		lblCdula.setFont(new Font("Calibri", Font.BOLD, 14));
+		JLabel lblCdula = new JLabel("Cédula");
+		lblCdula.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblCdula.setBounds(10, 85, 72, 14);
 		contentPane.add(lblCdula);
 
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n");
-		lblDireccin.setFont(new Font("Calibri", Font.BOLD, 14));
+		JLabel lblDireccin = new JLabel("Dirección");
+		lblDireccin.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblDireccin.setBounds(10, 130, 72, 14);
 		contentPane.add(lblDireccin);
 
-		JLabel lblTelefno = new JLabel("Telef\u00F3no");
-		lblTelefno.setFont(new Font("Calibri", Font.BOLD, 14));
+		JLabel lblTelefno = new JLabel("Teléfono");
+		lblTelefno.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblTelefno.setBounds(10, 177, 72, 14);
 		contentPane.add(lblTelefno);
 
-		JLabel lblCorreoElctronico = new JLabel("Correo el\u00E9ctronico");
-		lblCorreoElctronico.setFont(new Font("Calibri", Font.BOLD, 14));
+		JLabel lblCorreoElctronico = new JLabel("Correo eléctronico");
+		lblCorreoElctronico.setFont(new Font("Dialog", Font.BOLD, 13));
 		lblCorreoElctronico.setBounds(10, 223, 134, 14);
 		contentPane.add(lblCorreoElctronico);
 

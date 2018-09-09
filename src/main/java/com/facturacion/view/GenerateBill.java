@@ -67,12 +67,12 @@ public class GenerateBill extends JFrame {
 
 		JLabel lblListaDeServicios = new JLabel("Lista de servicios");
 		lblListaDeServicios.setFont(new Font("Calibri", Font.BOLD, 19));
-		lblListaDeServicios.setBounds(10, 29, 153, 14);
+		lblListaDeServicios.setBounds(10, 29, 177, 14);
 		contentPane.add(lblListaDeServicios);
 
 		JLabel lblCliente = new JLabel("C\u00E9dula cliente");
 		lblCliente.setFont(new Font("Calibri", Font.BOLD, 19));
-		lblCliente.setBounds(403, 29, 118, 14);
+		lblCliente.setBounds(403, 29, 177, 14);
 		contentPane.add(lblCliente);
 
 		tfIdCliente = new JTextField();

@@ -64,8 +64,8 @@ public class PrintView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNmeroDeFactura = new JLabel("Número de factura");
-		lblNmeroDeFactura.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblNmeroDeFactura.setBounds(10, 21, 121, 14);
+		lblNmeroDeFactura.setFont(new Font("Dialog", Font.BOLD, 13));
+		lblNmeroDeFactura.setBounds(10, 21, 177, 14);
 		contentPane.add(lblNmeroDeFactura);
 		
 		txtFactura = new JTextField();
