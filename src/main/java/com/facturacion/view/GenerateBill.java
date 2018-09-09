@@ -95,7 +95,7 @@ public class GenerateBill extends JFrame {
 							listService.clearSelection();
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "El número de identificación: "+id+". No se encuentra registrado en el sistema.", "Warning",
+							JOptionPane.showMessageDialog(null, "El nÃºmero de identificaciÃ³n: "+id+"."+"\n"+"No se encuentra registrado en el sistema.", "Warning",
 									JOptionPane.WARNING_MESSAGE);
 							NewClient newClient = new NewClient();
 							newClient.setVisible(true);
@@ -110,7 +110,7 @@ public class GenerateBill extends JFrame {
 					JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un servicio.", "Warning",
 							JOptionPane.WARNING_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "Debe ingresar la identificación del cliente.", "Warning",
+					JOptionPane.showMessageDialog(null, "Debe ingresar la identificaciÃ³n del cliente.", "Warning",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -135,13 +135,13 @@ public class GenerateBill extends JFrame {
 					}
 				} catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null,
-							"Solo se permite ingresar números en la identificación del cliente.", "Error",
+							"Solo se permite ingresar nÃºmeros en la identificaciÃ³n del cliente.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 					tfIdCliente.requestFocusInWindow();
 					e.printStackTrace();
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null,
-							"Ocurrió un error en la base de datos." + " - " + e.getMessage(), "Error",
+							"OcurriÃ³ un error en la base de datos." + " - " + e.getMessage(), "Error",
 							JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
@@ -237,7 +237,7 @@ public class GenerateBill extends JFrame {
 			else if(services.get(i).equals("Lavado y limpieza de pisos")) {
 				values[i] = Integer.parseInt(txt2.getText());
 			}
-			else if(services.get(i).equals("Limpieza y desinfeccion de baños")) {
+			else if(services.get(i).equals("Limpieza y desinfeccion de baÃ±os")) {
 				values[i] = Integer.parseInt(txt3.getText());
 			}
 			

@@ -99,11 +99,11 @@ public class LoginView extends JFrame{
 							dispose();
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "El usuario y/o contaseña ingresada son invalidos.","Error",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "El usuario y/o contaseÃ±a ingresada son invalidos.","Error",JOptionPane.ERROR_MESSAGE);
 						}
 					}
 					else {
-						JOptionPane.showConfirmDialog(null, "Debe ingresar un nombre de usuario y una contraseña");
+						JOptionPane.showConfirmDialog(null, "Debe ingresar un nombre de usuario y una contraseÃ±a");
 					}
 				}catch(Exception e) {
 					e.printStackTrace();

@@ -100,7 +100,7 @@ public class BillDAO {
 				printBill(totalPrice);
 				response = true;
 			} else {
-				JOptionPane.showMessageDialog(null, "Ocurrió un error generando la factura. Intente de nuevo.");
+				JOptionPane.showMessageDialog(null, "OcurriÃ³ un error generando la factura. Intente de nuevo.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

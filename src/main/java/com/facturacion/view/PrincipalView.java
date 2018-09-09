@@ -38,7 +38,7 @@ public class PrincipalView extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				int result = JOptionPane.showConfirmDialog(null, "Desea salir de la aplicación por completo?","Warning",JOptionPane.YES_NO_OPTION);
+				int result = JOptionPane.showConfirmDialog(null, "Desea salir de la aplicaciÃ³n por completo?","Warning",JOptionPane.YES_NO_OPTION);
 				if(result == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}

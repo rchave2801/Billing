@@ -63,7 +63,7 @@ public class PrintView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNmeroDeFactura = new JLabel("N\u00FAmero de factura");
+		JLabel lblNmeroDeFactura = new JLabel("NÃºmero de factura");
 		lblNmeroDeFactura.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblNmeroDeFactura.setBounds(10, 21, 121, 14);
 		contentPane.add(lblNmeroDeFactura);
@@ -85,7 +85,7 @@ public class PrintView extends JFrame {
 					}										
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "Debe ingresar un número de factra", "Warning",
+					JOptionPane.showMessageDialog(null, "Debe ingresar un nÃºmero de factura", "Warning",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -109,7 +109,7 @@ public class PrintView extends JFrame {
 			}
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "El número de factura ingresado no existe en el sistema.", "Error",
+			JOptionPane.showMessageDialog(null, "El nÃºmero de factura ingresado no existe en el sistema.", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}		
 	}

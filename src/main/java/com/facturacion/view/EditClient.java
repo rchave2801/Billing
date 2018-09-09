@@ -86,7 +86,7 @@ public class EditClient extends JFrame {
 							tfAddress.setText(c.getAddress());
 						}
 					} catch (NullPointerException ex) {
-						JOptionPane.showMessageDialog(null, "Error en la obtención de datos del cliente. "+ "(" + ex.getMessage() + ")", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Error en la obtenciÃ³n de datos del cliente. "+ "(" + ex.getMessage() + ")", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}

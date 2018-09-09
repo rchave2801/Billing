@@ -33,7 +33,7 @@ public class ClientDAO {
 				JOptionPane.showMessageDialog(null, "Cliente ingresado satisfactoriamente.");
 			else
 				JOptionPane.showMessageDialog(null,
-						"El cliente con identificaciÛn " + client.getId() + " Ya est· registrado en el sistema");
+						"El cliente con identificaci√≥n " + client.getId() + " Ya est√° registrado en el sistema");
 			con.close();
 			cstmt.close();
 		} catch (SQLException e) {
@@ -71,7 +71,7 @@ public class ClientDAO {
 				cstmt.close();
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "El cliente que est· buscando no se encuentra registrado. "+"("+id+")", "Information", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "El cliente que est√° buscando no se encuentra registrado. "+"("+id+")", "Information", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}catch(Exception e){
 			JOptionPane.showMessageDialog(null, "Error consultando datos del cliente. "+ "(" + e.getMessage() + ")", "Error", JOptionPane.ERROR_MESSAGE);

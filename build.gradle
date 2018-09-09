@@ -17,7 +17,7 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
 	//Use JasperReport library    
-    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.1.0'
+    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.6.0'
     //Use MySql Connector
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
 }

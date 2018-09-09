@@ -4,7 +4,7 @@ package com.facturacion.model;
 /**
  * 
  * @author rchave
- * Fecha de creación: 2017-03-04 (YYYY-MM-DD)
+ * Fecha de creaciÃ³n: 2017-03-04 (YYYY-MM-DD)
  */
 public class Bill {
 	

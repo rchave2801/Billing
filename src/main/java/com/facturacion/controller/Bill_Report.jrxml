@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-11T13:45:31 -->
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Bill_Report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e2f658f-d721-413a-84b1-38865c2407d4">
-	<property name="com.jaspersoft.studio.data.sql.tables" value="YENMSUVOVGAgLDg1LDE1LGVkNGFiZTUyLTM1OTEtNDE5Yy05NmVlLTExMzZhOTI1NDRlNTtgU0VS&#xA;VklDRWAgLDE3MywxNSwzZDdjNjYyNC05NmU4LTRkMGMtOTRmNy02OGQyZmJkMDUxOTQ7YEJJTExf&#xA;SEFTX1NFUlZJQ0VTYCAsMjYzLDE1LDAyYWI0YmIwLTg4MGEtNGMyMC1iNDI3LTM5ZDhlYTFjYTg0&#xA;MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs="/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[YENMSUVOVGAgLDg1LDE1LGVkNGFiZTUyLTM1OTEtNDE5Yy05NmVlLTExMzZhOTI1NDRlNTtgU0VS
+VklDRWAgLDE3MywxNSwzZDdjNjYyNC05NmU4LTRkMGMtOTRmNy02OGQyZmJkMDUxOTQ7YEJJTExf
+SEFTX1NFUlZJQ0VTYCAsMjYzLDE1LDAyYWI0YmIwLTg4MGEtNGMyMC1iNDI3LTM5ZDhlYTFjYTg0
+MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="TOTALPRICELITERAL" class="java.lang.String"/>
 	<parameter name="BillNumberFactura" class="java.lang.String"/>
 	<queryString language="SQL">
