@@ -29,12 +29,12 @@ public class BillDAO {
 
 	private Connection con;
 
-	public List<Bill> getBills(int idClient) {
+	public List<Bill> getBills(int idClient) throws SQLException {
 		con = null;
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		List<Bill> billList = new ArrayList<Bill>();
-		String query = "SELECT * FROM BILL B, BILL_HAS_SERVICES BS, SERVICE S WHERE B.CLIENT_ID = ? AND BS.BILL_BILLNUMBER = B.BILL_NUMBER AND BS.SERVICE_CODE = S.CODE";
+		String query = "SELECT * FROM BILL B, BILL_HAS_SERVICES BS, SERVICE S WHERE B.CLIENT_ID = ? AND BS.BILL_CODE = B.BILL_NUMBER AND BS.SERVICE_CODE = S.CODE";
 		con = DBConnection.createConnection();
 		try {
 			Bill bill = new Bill();
@@ -47,10 +47,12 @@ public class BillDAO {
 				bill.setStatus(resultSet.getString("Status").charAt(0));
 				billList.add(bill);
 			}
-			con.close();
-			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			stmt.close();
+			resultSet.close();
+			con.close();
 		}
 		return billList;
 	}
@@ -63,7 +65,7 @@ public class BillDAO {
 		CallableStatement cstmt = null;
 		String totalPrice = "";
 		String query = "INSERT INTO BILL (DATE, CLIENT_ID) VALUES (?,?)";
-		String procedure = "{CALL SP_GENERATE_BILL(?,?,?,?)}";
+		//String procedure = "{CALL SP_GENERATE_BILL(?,?,?,?)}";
 
 		try {
 			con = DBConnection.createConnection();
@@ -72,8 +74,6 @@ public class BillDAO {
 			stmt.setLong(2, idCliente);
 			stmt.execute();
 			int lastInserted = getLasInsertedBillNumber();
-			stmt.close();
-			con.close();
 
 			for (int i = 0; i < servicesList.length; i++) {
 				con = DBConnection.createConnection();
@@ -83,9 +83,8 @@ public class BillDAO {
 				cstmt.setInt(3, servicesList[i]);
 				cstmt.setInt(4, valuesList[i]);
 				exec = cstmt.executeUpdate();
-				con.close();
-				cstmt.close();
 			}
+			
 			if (exec == 1) {
 				String sql = "{CALL SP_GET_TOTAL_FACTURA(?,?)}"; 
 				con = DBConnection.createConnection();
@@ -95,8 +94,6 @@ public class BillDAO {
 				cstmt.executeUpdate();
 				totalPrice = String.valueOf(cstmt.getInt(2));
 
-				con.close();
-				cstmt.close();
 				printBill(totalPrice);
 				response = true;
 			} else {
@@ -104,6 +101,9 @@ public class BillDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			cstmt.close();
+			con.close();
 		}
 		return response;
 	}
@@ -113,10 +113,11 @@ public class BillDAO {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.now();
 		date = dtf.format(localDate);
+		
 		return date;
 	}
 
-	public int getLasInsertedBillNumber() {
+	public int getLasInsertedBillNumber() throws SQLException {
 		con = null;
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
@@ -129,16 +130,18 @@ public class BillDAO {
 			while (resultSet.next()) {
 				n = resultSet.getInt(1);
 			}
-			con.close();
-			stmt.close();
-			resultSet.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			stmt.close();
+			resultSet.close();
+			con.close();
 		}
+		
 		return n;
 	}
 
-	public void watchBill(String totalPriceLiteral, String BillNumberFactura) {
+	public void watchBill(String totalPriceLiteral, String BillNumberFactura) throws SQLException {
 		JasperReport report;
 		JasperPrint report_view;
 		try {
@@ -151,15 +154,14 @@ public class BillDAO {
 			con = DBConnection.createConnection();
 			report_view = JasperFillManager.fillReport(report, parameters, con);
 			JasperViewer.viewReport(report_view, false);
-			con.close();
 		} catch (JRException E) {
 			E.printStackTrace();
-		} catch (SQLException E) {
-			E.printStackTrace();
+		} finally {
+			con.close();
 		}
 	}
 
-	public boolean validateBill(int billNumber) {
+	public boolean validateBill(int billNumber) throws SQLException {
 		boolean response = false;
 		con = null;
 		PreparedStatement stmt = null;
@@ -173,22 +175,24 @@ public class BillDAO {
 			while (resultSet.next()) {
 				response = true;
 			}
-			con.close();
-			stmt.close();
-			resultSet.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			stmt.close();
+			resultSet.close();
+			con.close();
 		}
+		
 		return response;
 	}
 
-	public void printBill(String totalPrice) {
+	public void printBill(String totalPrice) throws SQLException {
 		watchBill(NumberToString.Convertir(totalPrice, true), String.valueOf(getLasInsertedBillNumber()));
 	}
 
-	public String getBillPrice(int billNumber) {
+	public String getBillPrice(int billNumber) throws SQLException {
 		con = null;
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
@@ -202,16 +206,18 @@ public class BillDAO {
 			while (resultSet.next()) {
 				total = String.valueOf(resultSet.getInt(1));
 			}
-			con.close();
-			stmt.close();
-			resultSet.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			stmt.close();
+			resultSet.close();
+			con.close();
 		}
+		
 		return total;
 	}
 
-	public void printByBillNumber(String price, String bill) {
+	public void printByBillNumber(String price, String bill) throws SQLException {
 		watchBill(NumberToString.Convertir(price, true), bill);
 	}
 }

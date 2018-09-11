@@ -130,7 +130,7 @@ public class GenerateBill extends JFrame {
 					response = billDao.generateBill(serviceCodes, quantitiesValues, id);
 					if (!response) {
 						JOptionPane.showMessageDialog(null,
-								"Nfue posible generar la factura. Intente nuevamente.", "Error",
+								"No fue posible generar la factura. Intente nuevamente.", "Error",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				} catch (NumberFormatException e) {

@@ -13,7 +13,7 @@ public class ServiceDAO {
 	
 	private Connection con;
 	
-	public List<Service> getServices(){
+	public List<Service> getServices() throws SQLException{
 		List<Service> listaServicios = new ArrayList<>();
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
@@ -31,11 +31,12 @@ public class ServiceDAO {
 				
 				listaServicios.add(s);
 			}
-			con.close();
-			statement.close();
-			resultSet.close();
 		}catch(SQLException e){
 			e.printStackTrace();
+		} finally {
+			statement.close();
+			resultSet.close();
+			con.close();
 		}
 		return listaServicios;
 	}
