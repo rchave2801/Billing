@@ -26,8 +26,8 @@ public class ServiceDAO {
 				Service s = new Service();
 				s.setCode(resultSet.getInt(1));
 				s.setName(resultSet.getString(2));
-				s.setDescription(resultSet.getString(3));
-				s.setPrice(resultSet.getInt(4));
+				s.setDescription(resultSet.getString(4));
+				s.setPrice(resultSet.getInt(3));
 				
 				listaServicios.add(s);
 			}

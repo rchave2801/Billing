@@ -45,7 +45,7 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<textElement textAlignment="Center">
 					<font size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[FACTURA DE VENTA]]></text>
+				<text><![CDATA[Cuenta De Cobro]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="9" y="56" width="312" height="176" backcolor="#CCCCCC" uuid="15cd8064-b04a-46f8-87fb-e8fe8e545d21"/>
@@ -61,14 +61,14 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[San Andrés Islas]]></text>
+				<text><![CDATA[Medellin]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="8" y="199" width="187" height="15" uuid="beb8d690-e16a-4739-9210-7f484f680d57"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Dirección: Sarie Bay]]></text>
+				<text><![CDATA[Dirección: Cra 44BB # 84-16]]></text>
 			</staticText>
 			<rectangle radius="10">
 				<reportElement x="330" y="102" width="221" height="80" backcolor="#CCCCFF" uuid="eb5ca123-cf20-47ec-ac29-d8a6375664f9"/>
@@ -113,7 +113,7 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[NIT: ]]></text>
+				<text><![CDATA[NIT: 1123628423]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -194,14 +194,14 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<text><![CDATA[Detalle]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="321" y="9" width="44" height="14" uuid="713af6d5-1f9a-442a-bc5a-e1d560583c84"/>
+				<reportElement x="321" y="9" width="53" height="14" uuid="713af6d5-1f9a-442a-bc5a-e1d560583c84"/>
 				<textElement textAlignment="Center">
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="382" y="9" width="73" height="14" uuid="dd631b46-aba2-426a-98e4-3fc904293404"/>
+				<reportElement x="382" y="9" width="82" height="14" uuid="dd631b46-aba2-426a-98e4-3fc904293404"/>
 				<textElement textAlignment="Center">
 					<font isBold="true" isUnderline="true"/>
 				</textElement>
@@ -224,7 +224,7 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<textFieldExpression><![CDATA[$F{ServiceCode}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="81" y="8" width="235" height="14" uuid="9fd11692-89fa-4e51-b876-2d5c038f2ec9"/>
+				<reportElement x="86" y="8" width="235" height="14" uuid="9fd11692-89fa-4e51-b876-2d5c038f2ec9"/>
 				<textFieldExpression><![CDATA[$F{ServiceName}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -281,14 +281,14 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<textElement textAlignment="Center">
 					<font size="9" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Veronica Chaverra]]></text>
+				<text><![CDATA[Isla Creativa]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="8" y="50" width="554" height="14" uuid="f5de5cdf-b458-4d62-850b-d16794fa2fe0"/>
 				<textElement textAlignment="Center">
 					<font isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Calle 6 No - 10-77 Colombia - PBX: 512 03 49 - http://verolimp.com/]]></text>
+				<text><![CDATA[Cll 44BB # 84-16]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="9" y="11" width="44" height="11" uuid="d7e3c772-0ec5-4e3e-bbc4-411b825b8610"/>
@@ -305,7 +305,7 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 				<text><![CDATA[Total Factura:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="424" y="11" width="124" height="20" uuid="de4904ff-e9a2-4960-bb6a-6e045fe11804"/>
+				<reportElement x="423" y="11" width="124" height="20" uuid="de4904ff-e9a2-4960-bb6a-6e045fe11804"/>
 				<textElement textAlignment="Right">
 					<font size="14" isBold="true"/>
 				</textElement>

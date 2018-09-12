@@ -231,7 +231,7 @@ public class GenerateBill extends JFrame {
 	private int[] getValues(List<String> services) {
 		int[] values = new int[services.size()];
 		for(int i = 0; i < services.size(); i++) {
-			if(services.get(i).equals("Limpieza y desinfeccion a vapor de cocinas")) {
+			if(services.get(i).equals("Imagen corporativa")) {
 				values[i] = Integer.parseInt(txt1.getText());		
 			}
 			else if(services.get(i).equals("Lavado y limpieza de pisos")) {

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -97,7 +98,7 @@ public class PrintView extends JFrame {
 		contentPane.add(btnImprimir);
 	}
 	
-	private void printBill(int billNumber) {
+	private void printBill(int billNumber) throws SQLException {
 		BillDAO billDao = new BillDAO();
 		String price = "";
 		String bill = "";
@@ -114,7 +115,7 @@ public class PrintView extends JFrame {
 		}		
 	}
 	
-	private boolean validateBill(int billNumber) {
+	private boolean validateBill(int billNumber) throws SQLException {
 		BillDAO billDao = new BillDAO();
 		if(billDao.validateBill(billNumber))
 			return true;

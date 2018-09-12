@@ -57,52 +57,57 @@ public class BillDAO {
 		return billList;
 	}
 
+	@SuppressWarnings("resource")
 	public boolean generateBill(int[] servicesList, int[] valuesList, long idCliente) throws SQLException {
 		con = null;
 		boolean response = false;
-		int exec = 0;
 		PreparedStatement stmt = null;
-		CallableStatement cstmt = null;
-		String totalPrice = "";
-		String query = "INSERT INTO BILL (DATE, CLIENT_ID) VALUES (?,?)";
-		//String procedure = "{CALL SP_GENERATE_BILL(?,?,?,?)}";
+		ResultSet resultSet = null;
+		long totalValue = 0;
+		long totalBill = 0;
+		String query = "INSERT INTO BILL (DATE, CLIENT_ID, TOTAL_PRICE) VALUES (?,?,?)";
+		String queryPrice = "SELECT PRICE FROM SERVICE WHERE CODE = ?";
+		String queryBillService = "INSERT INTO BILL_HAS_SERVICES (BILL_CODE, SERVICE_CODE, QUANTITY, TOTAL) VALUES (?,?,?,?)";
+		String updateBill = "UPDATE BILL SET TOTAL_PRICE = ? WHERE BILL_NUMBER = ?";
 
 		try {
 			con = DBConnection.createConnection();
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, getActualDate());
 			stmt.setLong(2, idCliente);
+			stmt.setLong(3, totalValue);
 			stmt.execute();
 			int lastInserted = getLasInsertedBillNumber();
 
 			for (int i = 0; i < servicesList.length; i++) {
 				con = DBConnection.createConnection();
-				cstmt = con.prepareCall(procedure);
-				cstmt.setLong(1, idCliente);
-				cstmt.setInt(2, lastInserted);
-				cstmt.setInt(3, servicesList[i]);
-				cstmt.setInt(4, valuesList[i]);
-				exec = cstmt.executeUpdate();
+				stmt = con.prepareStatement(queryPrice);
+				stmt.setInt(1,servicesList[i]);
+				resultSet = stmt.executeQuery();
+				if(resultSet.next()) {
+					totalValue += (resultSet.getLong(1))*valuesList[i];
+					stmt = con.prepareStatement(queryBillService);
+					stmt.setInt(1, lastInserted);
+					stmt.setInt(2, servicesList[i]);
+					stmt.setInt(3, valuesList[i]);
+					stmt.setLong(4, totalValue);
+					stmt.execute();
+				}
+				
+				totalBill += totalValue;
 			}
+			stmt = con.prepareStatement(updateBill);
+			stmt.setLong(1,totalBill);
+			stmt.setInt(2, lastInserted);
+			stmt.executeUpdate();
 			
-			if (exec == 1) {
-				String sql = "{CALL SP_GET_TOTAL_FACTURA(?,?)}"; 
-				con = DBConnection.createConnection();
-				cstmt = con.prepareCall(sql);
-				cstmt.setInt(1, lastInserted);
-				cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
-				cstmt.executeUpdate();
-				totalPrice = String.valueOf(cstmt.getInt(2));
-
-				printBill(totalPrice);
-				response = true;
-			} else {
-				JOptionPane.showMessageDialog(null, "Ocurrió un error generando la factura. Intente de nuevo.");
-			}
+			printBill(String.valueOf(totalBill));
+			response = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			cstmt.close();
+			resultSet.close();
+			stmt.close();			
 			con.close();
 		}
 		return response;
