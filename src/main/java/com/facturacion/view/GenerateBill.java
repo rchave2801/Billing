@@ -67,16 +67,16 @@ public class GenerateBill extends JFrame {
 
 		JLabel lblListaDeServicios = new JLabel("Lista de servicios");
 		lblListaDeServicios.setFont(new Font("Calibri", Font.BOLD, 19));
-		lblListaDeServicios.setBounds(10, 29, 177, 14);
+		lblListaDeServicios.setBounds(10, 29, 177, 23);
 		contentPane.add(lblListaDeServicios);
 
-		JLabel lblCliente = new JLabel("C\u00E9dula cliente");
+		JLabel lblCliente = new JLabel("Identificación cliente");
 		lblCliente.setFont(new Font("Calibri", Font.BOLD, 19));
-		lblCliente.setBounds(403, 29, 177, 14);
+		lblCliente.setBounds(403, 29, 230, 23);
 		contentPane.add(lblCliente);
 
 		tfIdCliente = new JTextField();
-		tfIdCliente.setBounds(403, 47, 177, 30);
+		tfIdCliente.setBounds(403, 53, 177, 30);
 		contentPane.add(tfIdCliente);
 		tfIdCliente.setColumns(10);
 
@@ -231,25 +231,25 @@ public class GenerateBill extends JFrame {
 	private int[] getValues(List<String> services) {
 		int[] values = new int[services.size()];
 		for(int i = 0; i < services.size(); i++) {
-			if(services.get(i).equals("Imagen corporativa")) {
+			if(services.get(i).equalsIgnoreCase("Imagen corporativa")) {
 				values[i] = Integer.parseInt(txt1.getText());		
 			}
-			else if(services.get(i).equals("Lavado y limpieza de pisos")) {
+			else if(services.get(i).equalsIgnoreCase("Tarjetas")) {
 				values[i] = Integer.parseInt(txt2.getText());
 			}
-			else if(services.get(i).equals("Limpieza y desinfeccion de baños")) {
+			else if(services.get(i).equalsIgnoreCase("Volantes")) {
 				values[i] = Integer.parseInt(txt3.getText());
 			}
 			
-			else if(services.get(i).equals("Limpieza de electrodomesticos")) {
+			else if(services.get(i).equalsIgnoreCase("Pendón")) {
 				values[i] = Integer.parseInt(txt4.getText());
 			}
 			
-			else if(services.get(i).equals("Lavado de fachadas")) {
+			else if(services.get(i).equalsIgnoreCase("Camisas")) {
 				values[i] = Integer.parseInt(txt5.getText());
 			}
 			
-			else if(services.get(i).equals("Limpieza de vidrios")) {
+			else if(services.get(i).equalsIgnoreCase("Gorras")) {
 				values[i] = Integer.parseInt(txt6.getText());
 			}
 		}

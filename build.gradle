@@ -32,7 +32,7 @@ jar {
     exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.MF'
 
     manifest {
-        attributes 'Main-Class': 'com.view.LoginView',
+        attributes 'Main-Class': 'com.view.PrincipalView',
                    'Class-Path': configurations.runtime.files.collect { "lib/$it.name" }.join(' ')
     }
     
