@@ -11,7 +11,7 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 	<parameter name="TOTALPRICELITERAL" class="java.lang.String"/>
 	<parameter name="BillNumberFactura" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT B.BILL_NUMBER, B.TOTAL_PRICE, B.DATE,
+		<![CDATA[SELECT B.BILL_NUMBER, B.TOTAL_PRICE, B.DISCOUNT, B.DATE,
     C.NAME, C.ADDRESS, C.PHONE, S.CODE AS ServiceCode, S.NAME AS ServiceName, S.PRICE, C.ID AS CLIENT_ID, BH.QUANTITY,
     BH.TOTAL AS TOTALUNITY
 	FROM BILL B, CLIENT C, SERVICE S, BILL_HAS_SERVICES BH
@@ -21,6 +21,7 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
     AND B.BILL_NUMBER = $P{BillNumberFactura}]]>
 	</queryString>
 	<field name="BILL_NUMBER" class="java.lang.Integer"/>
+	<field name="DISCOUNT" class="java.lang.Double"/>
 	<field name="TOTAL_PRICE" class="java.lang.Integer"/>
 	<field name="DATE" class="java.lang.String"/>
 	<field name="NAME" class="java.lang.String"/>
@@ -270,61 +271,75 @@ MTtgQklMTGAgLDE1LDE1LDEyY2UzNzFlLTQ0NjQtNDg0ZS05MDE5LTIyYWNhYjI3NTU1Yzs=]]>
 		<band height="4" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="74" splitType="Stretch">
+		<band height="153" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="1" y="6" width="554" height="40" backcolor="#318BC2" uuid="b4aae238-d163-409c-b2bf-ecf66f7996fa"/>
+				<reportElement x="1" y="6" width="554" height="127" backcolor="#318BC2" uuid="b4aae238-d163-409c-b2bf-ecf66f7996fa"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="64" y="11" width="64" height="20" forecolor="#FFFFFF" uuid="698fff72-749c-4334-9ca3-ee290208bd11"/>
-				<textElement textAlignment="Center">
-					<font size="10" isItalic="false"/>
-				</textElement>
-				<text><![CDATA[Isla Creativa]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="50" width="554" height="24" uuid="f5de5cdf-b458-4d62-850b-d16794fa2fe0"/>
+				<reportElement x="0" y="133" width="554" height="10" uuid="f5de5cdf-b458-4d62-850b-d16794fa2fe0"/>
 				<textElement textAlignment="Center">
 					<font size="8" isItalic="false"/>
 				</textElement>
 				<text><![CDATA[Esta factura de venta se asimila en todos sus efectos legales a una letra de cambio según el Art. 774 del Código de Comercio.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="11" width="59" height="20" forecolor="#FFFFFF" uuid="d7e3c772-0ec5-4e3e-bbc4-411b825b8610"/>
+				<reportElement x="261" y="45" width="72" height="20" forecolor="#FFFFFF" uuid="d7e3c772-0ec5-4e3e-bbc4-411b825b8610"/>
 				<textElement>
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Vendedor:]]></text>
+				<text><![CDATA[Descuento:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="11" width="98" height="20" forecolor="#FFFFFF" uuid="7f1291ce-51f5-4ed0-9d6f-22a39eebab54"/>
-				<textElement>
-					<font size="14" isBold="true"/>
+				<reportElement x="261" y="20" width="72" height="20" forecolor="#FFFFFF" uuid="7f1291ce-51f5-4ed0-9d6f-22a39eebab54"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total Factura:]]></text>
+				<text><![CDATA[Subtotal:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="422" y="11" width="124" height="20" forecolor="#FFFFFF" uuid="de4904ff-e9a2-4960-bb6a-6e045fe11804"/>
+				<reportElement x="398" y="20" width="147" height="20" forecolor="#FFFFFF" uuid="de4904ff-e9a2-4960-bb6a-6e045fe11804"/>
 				<textElement textAlignment="Right">
-					<font size="14" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.DecimalFormat("$ #,##0").format($F{TOTAL_PRICE})]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="229" y="30" width="89" height="12" forecolor="#FFFFFF" uuid="ddf15e5d-e620-4c65-9f95-cb26adf4af86"/>
+				<reportElement x="239" y="94" width="94" height="20" forecolor="#FFFFFF" uuid="ddf15e5d-e620-4c65-9f95-cb26adf4af86"/>
 				<textElement>
-					<font size="10" isBold="true"/>
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Valor en letras:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="319" y="30" width="227" height="15" forecolor="#FFFFFF" uuid="6f55547a-e198-489f-b428-ac618cea6de0"/>
-				<textElement>
-					<font size="10"/>
+				<reportElement x="342" y="97" width="202" height="15" forecolor="#FFFFFF" uuid="6f55547a-e198-489f-b428-ac618cea6de0"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{TOTALPRICELITERAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="282" y="68" width="51" height="20" forecolor="#FFFFFF" uuid="40fa2de4-5170-49fd-8f1e-f913b9444b3c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="401" y="68" width="144" height="20" forecolor="#FFFFFF" uuid="83eaf677-dba5-434c-9fe1-378071345f65"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("$ #,##0").format(($F{TOTAL_PRICE} - ($F{TOTAL_PRICE}) * ($F{DISCOUNT}/100)))]]></textFieldExpression>
+			</textField>
+			<textField pattern="#.##%">
+				<reportElement x="451" y="45" width="94" height="15" forecolor="#FFFFFF" uuid="13d536ff-ce78-44b0-9a08-de47de0f01d2"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DISCOUNT}/100]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

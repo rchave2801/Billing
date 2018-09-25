@@ -58,14 +58,14 @@ public class BillDAO {
 	}
 
 	@SuppressWarnings("resource")
-	public boolean generateBill(int[] servicesList, int[] valuesList, long idCliente) throws SQLException {
+	public boolean generateBill(int[] servicesList, int[] valuesList, long idCliente, double discount) throws SQLException {
 		con = null;
 		boolean response = false;
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		long totalValue = 0;
 		long totalBill = 0;
-		String query = "INSERT INTO BILL (DATE, CLIENT_ID, TOTAL_PRICE) VALUES (?,?,?)";
+		String query = "INSERT INTO BILL (DATE, CLIENT_ID, TOTAL_PRICE, DISCOUNT) VALUES (?,?,?,?)";
 		String queryPrice = "SELECT PRICE FROM SERVICE WHERE CODE = ?";
 		String queryBillService = "INSERT INTO BILL_HAS_SERVICES (BILL_CODE, SERVICE_CODE, QUANTITY, TOTAL) VALUES (?,?,?,?)";
 		String updateBill = "UPDATE BILL SET TOTAL_PRICE = ? WHERE BILL_NUMBER = ?";
@@ -76,6 +76,7 @@ public class BillDAO {
 			stmt.setString(1, getActualDate());
 			stmt.setLong(2, idCliente);
 			stmt.setLong(3, totalValue);
+			stmt.setDouble(4, discount);
 			stmt.execute();
 			int lastInserted = getLasInsertedBillNumber();
 
@@ -202,7 +203,7 @@ public class BillDAO {
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
 		String total = "";
-		String query = "SELECT TOTAL_PRICE FROM BILL WHERE BILL_NUMBER = ?";
+		String query = "SELECT (TOTAL_PRICE - (TOTAL_PRICE * (DISCOUNT/100))) FROM BILL WHERE BILL_NUMBER = ?";
 		try {
 			con = DBConnection.createConnection();
 			stmt = con.prepareStatement(query);

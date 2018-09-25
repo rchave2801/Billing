@@ -37,6 +37,7 @@ public class GenerateBill extends JFrame {
 	private JTextField txt4;
 	private JTextField txt5;
 	private JTextField txt6;
+	private JTextField tfDiscount;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -89,8 +90,10 @@ public class GenerateBill extends JFrame {
 				if (!tfIdCliente.getText().isEmpty() && !listService.isSelectionEmpty()) {
 					try {
 						long id = Long.parseLong(tfIdCliente.getText());
+						double discount = Double.parseDouble(tfDiscount.getText());
 						if(validateUser(id)) {
-							createBill(listService, id);
+							createBill(listService, id, discount);
+							tfDiscount.setText(null);
 							tfIdCliente.setText(null);
 							listService.clearSelection();
 						}
@@ -101,7 +104,9 @@ public class GenerateBill extends JFrame {
 							newClient.setVisible(true);
 						}
 					}catch(NumberFormatException n) {
-						
+						JOptionPane.showMessageDialog(null,
+								"Ingresó alguna letra en un campo númerico. Valide los campos identificación y descuento", "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 					catch(SQLException n) {
 						
@@ -115,7 +120,7 @@ public class GenerateBill extends JFrame {
 				}
 			}
 
-			private void createBill(JList<String> listService, long id) {
+			private void createBill(JList<String> listService, long id, double discount) {
 				BillDAO billDao = new BillDAO();
 				int[] serviceCodes = null;
 				List<String> serviceNames = null;
@@ -127,7 +132,7 @@ public class GenerateBill extends JFrame {
 					serviceCodes[i] = serviceCodes[i] + 1;
 				}
 				try {
-					response = billDao.generateBill(serviceCodes, quantitiesValues, id);
+					response = billDao.generateBill(serviceCodes, quantitiesValues, id, discount);
 					if (!response) {
 						JOptionPane.showMessageDialog(null,
 								"No fue posible generar la factura. Intente nuevamente.", "Error",
@@ -204,6 +209,21 @@ public class GenerateBill extends JFrame {
 		txt6.setBounds(340, 185, 24, 14);
 		txt6.setHorizontalAlignment(JTextField.CENTER);
 		contentPane.add(txt6);
+		
+		tfDiscount = new JTextField();
+		tfDiscount.setColumns(10);
+		tfDiscount.setBounds(10, 258, 42, 30);
+		contentPane.add(tfDiscount);
+		
+		JLabel lblDescuento = new JLabel("Descuento");
+		lblDescuento.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblDescuento.setBounds(10, 234, 110, 23);
+		contentPane.add(lblDescuento);
+		
+		JLabel label = new JLabel("%");
+		label.setFont(new Font("Dialog", Font.BOLD, 19));
+		label.setBounds(53, 259, 15, 29);
+		contentPane.add(label);
 	}
 
 	private JList<String> populateJlist() {
