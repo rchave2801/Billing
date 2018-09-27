@@ -28,24 +28,16 @@ CREATE TABLE `BILL` (
   `BILL_NUMBER` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Bill unique number',
   `CLIENT_ID` bigint(11) NOT NULL COMMENT 'Client id FK',
   `DATE` date NOT NULL COMMENT 'Bill generated date',
-  `TOTAL_PRICE` bigint(20) NOT NULL COMMENT 'Bill total value',
-  `STATUS` varchar(2) COLLATE latin1_spanish_ci NOT NULL DEFAULT 'PE' COMMENT 'Bill status',
+  `TOTAL_PRICE` bigint(20) NOT NULL DEFAULT '0' COMMENT 'Bill total value',
+  `DISCOUNT` double NOT NULL DEFAULT '0' COMMENT 'Discount percentage',
+  `STATUS` varchar(1) COLLATE latin1_spanish_ci NOT NULL DEFAULT 'P' COMMENT 'Bill status',
   PRIMARY KEY (`BILL_NUMBER`),
   KEY `CLIENT_ID_FK` (`CLIENT_ID`),
   KEY `STATUS_CODE_FK` (`STATUS`),
   CONSTRAINT `CLIENT_ID_FK` FOREIGN KEY (`CLIENT_ID`) REFERENCES `CLIENT` (`ID`),
   CONSTRAINT `STATUS_CODE_FK` FOREIGN KEY (`STATUS`) REFERENCES `STATUS` (`CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Bill data';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Bill data';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `BILL`
---
-
-LOCK TABLES `BILL` WRITE;
-/*!40000 ALTER TABLE `BILL` DISABLE KEYS */;
-/*!40000 ALTER TABLE `BILL` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `BILL_HAS_SERVICES`
@@ -57,21 +49,14 @@ DROP TABLE IF EXISTS `BILL_HAS_SERVICES`;
 CREATE TABLE `BILL_HAS_SERVICES` (
   `BILL_CODE` int(11) NOT NULL COMMENT 'Client identification FK',
   `SERVICE_CODE` int(11) NOT NULL COMMENT 'Service id FK',
+  `QUANTITY` int(11) NOT NULL COMMENT 'Cantidad del servicio',
+  `TOTAL` int(11) NOT NULL COMMENT 'Precio total del servicio por cantidad',
   KEY `BILL_CODE_FK` (`BILL_CODE`),
   KEY `SERVICE_CODE_FK` (`SERVICE_CODE`),
   CONSTRAINT `BILL_CODE_FK` FOREIGN KEY (`BILL_CODE`) REFERENCES `BILL` (`BILL_NUMBER`),
   CONSTRAINT `SERVICE_CODE_FK` FOREIGN KEY (`SERVICE_CODE`) REFERENCES `SERVICE` (`CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Bill and service related data';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `BILL_HAS_SERVICES`
---
-
-LOCK TABLES `BILL_HAS_SERVICES` WRITE;
-/*!40000 ALTER TABLE `BILL_HAS_SERVICES` DISABLE KEYS */;
-/*!40000 ALTER TABLE `BILL_HAS_SERVICES` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `CLIENT`
@@ -86,18 +71,10 @@ CREATE TABLE `CLIENT` (
   `ADDRESS` varchar(100) COLLATE latin1_spanish_ci DEFAULT NULL COMMENT 'Client home address',
   `PHONE` int(11) DEFAULT NULL COMMENT 'Client phone number',
   `EMAIL` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL COMMENT 'Client email',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `ID` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Client data';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `CLIENT`
---
-
-LOCK TABLES `CLIENT` WRITE;
-/*!40000 ALTER TABLE `CLIENT` DISABLE KEYS */;
-/*!40000 ALTER TABLE `CLIENT` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `SERVICE`
@@ -110,20 +87,11 @@ CREATE TABLE `SERVICE` (
   `CODE` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Service id',
   `NAME` varchar(100) COLLATE latin1_spanish_ci NOT NULL COMMENT 'Service name',
   `PRICE` bigint(20) NOT NULL COMMENT 'Service price',
-  `DESCRIPTION` int(250) DEFAULT NULL COMMENT 'Service description',
+  `DESCRIPTION` varchar(250) COLLATE latin1_spanish_ci DEFAULT NULL COMMENT 'Service description',
   PRIMARY KEY (`CODE`),
   UNIQUE KEY `NAME` (`NAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Service data';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Service data';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `SERVICE`
---
-
-LOCK TABLES `SERVICE` WRITE;
-/*!40000 ALTER TABLE `SERVICE` DISABLE KEYS */;
-/*!40000 ALTER TABLE `SERVICE` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `STATUS`
@@ -133,20 +101,11 @@ DROP TABLE IF EXISTS `STATUS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `STATUS` (
-  `CODE` varchar(2) COLLATE latin1_spanish_ci NOT NULL COMMENT 'Status id',
+  `CODE` varchar(1) COLLATE latin1_spanish_ci NOT NULL COMMENT 'Status id',
   `DESCRIPTION` varchar(100) COLLATE latin1_spanish_ci NOT NULL COMMENT 'Status description',
   PRIMARY KEY (`CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci COMMENT='Bill status data';
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `STATUS`
---
-
-LOCK TABLES `STATUS` WRITE;
-/*!40000 ALTER TABLE `STATUS` DISABLE KEYS */;
-/*!40000 ALTER TABLE `STATUS` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -157,4 +116,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-08 22:04:32
+-- Dump completed on 2018-09-26 21:48:19
