@@ -1,7 +1,6 @@
 package com.facturacion.controller;
 
 import java.net.URL;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JOptionPane;
 
 import com.facturacion.model.Bill;
 import com.facturacion.utilities.NumberToString;
