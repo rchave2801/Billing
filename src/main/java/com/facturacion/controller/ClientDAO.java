@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.facturacion.model.Client;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 public class ClientDAO {
 
@@ -30,14 +29,15 @@ public class ClientDAO {
 			if (exec == 1) {
 				JOptionPane.showMessageDialog(null, "Cliente ingresado satisfactoriamente.");	
 			}
-		} catch(MySQLIntegrityConstraintViolationException e) {
-			JOptionPane.showMessageDialog(null,
-					"Ya existe un cliente con identificación " + client.getId() + " registrado en el sistema");
-			
 		} catch (SQLException e) {
+			if (e.getSQLState().startsWith("23")) {
+				JOptionPane.showMessageDialog(null,
+						"Ya existe un cliente con identificación " + client.getId() + " registrado en el sistema");
+          } else {
 			JOptionPane.showMessageDialog(null,
 					"Ocurrio un error insertando el cliente en la base de datos " + "(" + e.getMessage() + ")", "Error",
 					JOptionPane.ERROR_MESSAGE);
+          }
 		}  finally {
 			cstmt.close();
 			con.close();
